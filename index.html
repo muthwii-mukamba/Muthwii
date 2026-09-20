@@ -19,7 +19,6 @@
             color: #1f2937;
         }
 
-        /* TOP BAR */
         .topbar {
             background: #111827;
             color: white;
@@ -34,12 +33,6 @@
             font-weight: bold;
         }
 
-        .menu {
-            font-size: 25px;
-            cursor: pointer;
-        }
-
-        /* SIDEBAR */
         .sidebar {
             width: 230px;
             background: white;
@@ -66,7 +59,6 @@
             color: white;
         }
 
-        /* MAIN */
         .main {
             margin-left: 230px;
             padding: 30px;
@@ -85,7 +77,6 @@
             color: #6b7280;
         }
 
-        /* CARDS */
         .cards {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -111,12 +102,12 @@
             font-weight: bold;
         }
 
-        /* ADVERT SECTION */
         .section {
             background: white;
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+            margin-bottom: 25px;
         }
 
         .section-header {
@@ -133,13 +124,81 @@
             padding: 12px 18px;
             border-radius: 7px;
             cursor: pointer;
+            font-size: 15px;
         }
 
         .button:hover {
             background: #1d4ed8;
         }
 
-        /* MOBILE */
+        /* FORM */
+
+        #advertForm {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cancel {
+            background: #6b7280;
+        }
+
+        /* ADVERT CARD */
+
+        .advert-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 15px;
+        }
+
+        .advert-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .advert-card p {
+            margin-bottom: 8px;
+            color: #6b7280;
+        }
+
+        .whatsapp {
+            display: inline-block;
+            margin-top: 10px;
+            background: #16a34a;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 7px;
+            text-decoration: none;
+        }
+
         @media (max-width: 800px) {
 
             .sidebar {
@@ -171,83 +230,237 @@
 
 <body>
 
-    <header class="topbar">
-        <div class="logo">TEE ADS CENTRE</div>
-        <div class="menu">☰</div>
-    </header>
+<header class="topbar">
+    <div class="logo">TEE ADS CENTRE</div>
+</header>
 
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <a href="#" class="active">🏠 Dashboard</a>
+    <a href="#" class="active">🏠 Dashboard</a>
 
-        <a href="#">📢 My Adverts</a>
+    <a href="#" onclick="showAdvertForm()">➕ Create Advert</a>
 
-        <a href="#">➕ Create Advert</a>
+    <a href="#">📢 My Adverts</a>
 
-        <a href="#">👥 Groups</a>
+    <a href="#">👥 Groups</a>
 
-        <a href="#">📊 Analytics</a>
+    <a href="#">📊 Analytics</a>
 
-        <a href="#">⚙️ Settings</a>
+    <a href="#">⚙️ Settings</a>
 
-    </aside>
+</aside>
 
-    <main class="main">
+<main class="main">
 
-        <div class="welcome">
-            <h1>Welcome to TEE ADS CENTRE</h1>
-            <p>Manage and share your advertisements from one place.</p>
+    <div class="welcome">
+        <h1>Welcome to TEE ADS CENTRE</h1>
+        <p>Manage and share your advertisements from one place.</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Adverts</h3>
+            <div class="number" id="totalAdverts">0</div>
         </div>
 
-        <div class="cards">
+        <div class="card">
+            <h3>Active Adverts</h3>
+            <div class="number" id="activeAdverts">0</div>
+        </div>
 
-            <div class="card">
-                <h3>Total Adverts</h3>
-                <div class="number">0</div>
-            </div>
+        <div class="card">
+            <h3>WhatsApp Shares</h3>
+            <div class="number">0</div>
+        </div>
 
-            <div class="card">
-                <h3>Active Adverts</h3>
-                <div class="number">0</div>
-            </div>
+        <div class="card">
+            <h3>Groups</h3>
+            <div class="number">0</div>
+        </div>
 
-            <div class="card">
-                <h3>WhatsApp Shares</h3>
-                <div class="number">0</div>
-            </div>
+    </div>
 
-            <div class="card">
-                <h3>Groups</h3>
-                <div class="number">0</div>
-            </div>
+    <!-- CREATE ADVERT FORM -->
+
+    <div class="section" id="advertForm">
+
+        <div class="section-header">
+            <h2>Create New Advert</h2>
+        </div>
+
+        <div class="form-group">
+            <label>Business / Advert Name</label>
+            <input type="text" id="businessName" placeholder="e.g. Muthwii Queens Shoes">
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea id="description" placeholder="Describe your business or advert..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Phone / WhatsApp Number</label>
+            <input type="tel" id="phone" placeholder="e.g. 0712345678">
+        </div>
+
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="location" placeholder="e.g. Nairobi, Kenya">
+        </div>
+
+        <div class="form-group">
+            <label>Category</label>
+
+            <select id="category">
+                <option value="Fashion">Fashion</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Food">Food</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Services">Services</option>
+                <option value="Other">Other</option>
+            </select>
 
         </div>
 
-        <div class="section">
+        <div class="form-buttons">
 
-            <div class="section-header">
+            <button class="button" onclick="createAdvert()">
+                Publish Advert
+            </button>
 
-                <h2>My Advertisements</h2>
+            <button class="button cancel" onclick="hideAdvertForm()">
+                Cancel
+            </button>
 
-                <button class="button" onclick="createAdvert()">
-                    + Create Advert
-                </button>
+        </div>
 
-            </div>
+    </div>
 
+    <!-- ADVERTISEMENTS -->
+
+    <div class="section">
+
+        <div class="section-header">
+            <h2>My Advertisements</h2>
+
+            <button class="button" onclick="showAdvertForm()">
+                + Create Advert
+            </button>
+        </div>
+
+        <div id="advertList">
             <p>No advertisements have been created yet.</p>
-
         </div>
 
-    </main>
+    </div>
 
-    <script>
+</main>
 
-        function createAdvert() {
-            alert("Advert creation section coming next!");
-        }
+<script>
 
-    </script>
+let advertCount = 0;
+
+function showAdvertForm() {
+
+    document.getElementById("advertForm").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function hideAdvertForm() {
+
+    document.getElementById("advertForm").style.display = "none";
+}
+
+function createAdvert() {
+
+    const businessName =
+        document.getElementById("businessName").value;
+
+    const description =
+        document.getElementById("description").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+    const location =
+        document.getElementById("location").value;
+
+    const category =
+        document.getElementById("category").value;
+
+    if (!businessName || !description || !phone) {
+
+        alert("Please fill in the business name, description and phone number.");
+
+        return;
+    }
+
+    const whatsappNumber =
+        phone.replace(/\D/g, "");
+
+    const whatsappLink =
+        "https://wa.me/254" +
+        whatsappNumber.substring(
+            whatsappNumber.length - 9
+        );
+
+    const advertList =
+        document.getElementById("advertList");
+
+    if (advertCount === 0) {
+        advertList.innerHTML = "";
+    }
+
+    const advert = document.createElement("div");
+
+    advert.className = "advert-card";
+
+    advert.innerHTML = `
+
+        <h3>${businessName}</h3>
+
+        <p>${description}</p>
+
+        <p><strong>Category:</strong> ${category}</p>
+
+        <p><strong>Location:</strong> ${location}</p>
+
+        <p><strong>Phone:</strong> ${phone}</p>
+
+        <a
+            class="whatsapp"
+            href="${whatsappLink}"
+            target="_blank">
+            💬 Chat on WhatsApp
+        </a>
+
+    `;
+
+    advertList.appendChild(advert);
+
+    advertCount++;
+
+    document.getElementById("totalAdverts").textContent =
+        advertCount;
+
+    document.getElementById("activeAdverts").textContent =
+        advertCount;
+
+    hideAdvertForm();
+
+    document.getElementById("businessName").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("location").value = "";
+
+}
+
+</script>
 
 </body>
 </html>
