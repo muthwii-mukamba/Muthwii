@@ -3,61 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>TEE ADS CENTRE</title>
 
     <style>
-        body {
+        * {
+            box-sizing: border-box;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
+            padding: 0;
         }
 
-        header {
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        /* TOP BAR */
+        .topbar {
             background: #111827;
             color: white;
-            padding: 25px;
-            text-align: center;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .container {
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .menu {
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 230px;
+            background: white;
+            position: fixed;
+            left: 0;
+            top: 65px;
+            bottom: 0;
+            padding: 20px 15px;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 14px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            color: #374151;
+            border-radius: 8px;
+        }
+
+        .sidebar a:hover,
+        .sidebar .active {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* MAIN */
+        .main {
+            margin-left: 230px;
             padding: 30px;
-            text-align: center;
         }
 
-        button {
-            background: #16a34a;
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #6b7280;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        }
+
+        .card h3 {
+            color: #6b7280;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .number {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        /* ADVERT SECTION */
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background: #2563eb;
             color: white;
             border: none;
-            padding: 14px 25px;
-            border-radius: 8px;
+            padding: 12px 18px;
+            border-radius: 7px;
             cursor: pointer;
-            font-size: 16px;
         }
 
-        button:hover {
-            background: #15803d;
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome h1 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>TEE ADS CENTRE</h1>
-        <p>Your Advertising Hub</p>
+    <header class="topbar">
+        <div class="logo">TEE ADS CENTRE</div>
+        <div class="menu">☰</div>
     </header>
 
-    <div class="container">
-        <h2>Advertise Your Business</h2>
-        <p>Reach more customers through TEE ADS CENTRE.</p>
+    <aside class="sidebar">
 
-        <button onclick="showMessage()">Get Started</button>
-    </div>
+        <a href="#" class="active">🏠 Dashboard</a>
+
+        <a href="#">📢 My Adverts</a>
+
+        <a href="#">➕ Create Advert</a>
+
+        <a href="#">👥 Groups</a>
+
+        <a href="#">📊 Analytics</a>
+
+        <a href="#">⚙️ Settings</a>
+
+    </aside>
+
+    <main class="main">
+
+        <div class="welcome">
+            <h1>Welcome to TEE ADS CENTRE</h1>
+            <p>Manage and share your advertisements from one place.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Adverts</h3>
+                <div class="number">0</div>
+            </div>
+
+            <div class="card">
+                <h3>Active Adverts</h3>
+                <div class="number">0</div>
+            </div>
+
+            <div class="card">
+                <h3>WhatsApp Shares</h3>
+                <div class="number">0</div>
+            </div>
+
+            <div class="card">
+                <h3>Groups</h3>
+                <div class="number">0</div>
+            </div>
+
+        </div>
+
+        <div class="section">
+
+            <div class="section-header">
+
+                <h2>My Advertisements</h2>
+
+                <button class="button" onclick="createAdvert()">
+                    + Create Advert
+                </button>
+
+            </div>
+
+            <p>No advertisements have been created yet.</p>
+
+        </div>
+
+    </main>
 
     <script>
-        function showMessage() {
-            alert("Welcome to TEE ADS CENTRE!");
+
+        function createAdvert() {
+            alert("Advert creation section coming next!");
         }
+
     </script>
 
 </body>
